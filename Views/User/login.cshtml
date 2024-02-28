@@ -1,0 +1,21 @@
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Login</h1>
+            <form asp-controller="User" asp-action="Login" method="post">
+                <label for="username">username</label> 
+                <input for="username" id="username"/>
+                <label for="password">password</label>
+                <input for="password" class="form-control" id="password" />
+            </form>
+            <button class="btn btn-primary">Login</button>
+        </div>
+    </div>
+</div>
+                
+                                 

@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Login";
+}
+<script>
+  function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    console.log(username);
+    console.log(password);
+    fetch("../api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Username: username,
+        Password: password,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      })
+    
+  }
+</script>
+<div>
+  <h1 for="username">Username</h1>
+  <input type="text" id="username" name="username" />
+  <h1 for="password">Password</h1>
+  <input type="password" id="password" name="password" />
+  <button type="submit" onclick="login()">Login</button>
+</div>
