@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Register Page";
+}
+
+<!--  -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Register</h1>
+            <div>
+                <label for="email">email</label>
+                <input for="email" id="email"/>
+                <label for="username">username</label> 
+                <input for="username" id="username"/>
+                <label for="password">password</label>
+                <input for="password" type= "password" class="form-control" id="password" />
+                <label for="confirmPassword">confirm password</label>
+                <input for="password" type = "password"  class="form-control" id="confirmPassword" />
+            </div>
+            <button id= "submit" class="btn btn-primary">Register</button>
+        </div>
+    </div>
+</div>
+<script>
+  function register(){
+  username = document.getElementById('username');
+  email = document.getElementById('email');
+  password = document.getElementById('password');
+  confirmPassword = document.getElementById('confirmPassword');
+  if (password.value != confirmPassword.value) {
+    alert('passwords do not match');
+  }
+  else if (username.value == '' || email.value == '' || password.value == '' || confirmPassword.value == '') {
+      alert('all fields are required');
+    }
+  else {
+    fetch("api/register", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username.value,
+        email: email.value,
+        password: password.value
+      })
+    })
+  }
+  }
+  document.getElementById('submit').addEventListener('click', register);
+</script>

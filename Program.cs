@@ -1,13 +1,11 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
+using testMvc.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddAuthentication().AddGoogle(options =>
-      {
-      options.ClientId = "503320923852-vdao3q589hvgalfq7n3kgb2c8qu5hmqs.apps.googleusercontent.com";
-      options.ClientSecret = "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"; 
-      });
+var db = new ApplicationDbContext();
+db.Database.EnsureCreated();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

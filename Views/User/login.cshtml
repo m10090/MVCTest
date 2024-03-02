@@ -1,21 +1,38 @@
 @{
-    ViewBag.Title = "Login";
+    ViewData["Title"] = "Login Page";
 }
 
 
 <div class="container">
+  <h5> Not Working and don't test it </h5>
     <div class="row">
         <div class="col-md-12">
             <h1>Login</h1>
-            <form asp-controller="User" asp-action="Login" method="post">
-                <label for="username">username</label> 
-                <input for="username" id="username"/>
-                <label for="password">password</label>
-                <input for="password" class="form-control" id="password" />
-            </form>
+            <label for="username">username</label> 
+            <input for="username" id="username"/>
+            <label for="password">password</label>
+            <input for="password" class="form-control" id="password" />
             <button class="btn btn-primary">Login</button>
         </div>
     </div>
 </div>
-                
-                                 
+<script>
+  username = document.getElementById('username');
+  password = document.getElementById('password');
+  if (username.value == '' || password.value == '') {
+      alert('all fields are required');
+    }
+  else {
+    fetch("/api/login", {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username.value,
+        password: password.value
+      })
+    })
+  } 
+</script>

@@ -2,7 +2,7 @@
 
 
     ViewData["Title"] = "User";
-    var user = Context.User;
+    var user = Context?.User;
 }
 
 
@@ -10,8 +10,18 @@
     <div class="row">
         <div class="col-md-12">
             <h1>User</h1>
-            <p>@user 
-            Welcome to the User page.</p>
         </div>
     </div>
+    @if (user.Identity.IsAuthenticated)
+    {
+        <p>You are logged in as @user.Identity.Name</p>
+        <a asp-controller="User" asp-action="Logout">Logout</a>
+    }
+    else
+    {
+        <p>You are not logged in.</p>
+        <a asp-controller="User" asp-action="Login">Login</a>
+    }
+    <a asp-controller="User" asp-action="Register">Register</a>
 </div>
+
