@@ -2,37 +2,8 @@
     ViewData["Title"] = "Login Page";
 }
 
-
-<div class="container">
-  <h5> Not Working and don't test it </h5>
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Login</h1>
-            <label for="username">username</label> 
-            <input for="username" id="username"/>
-            <label for="password">password</label>
-            <input for="password" class="form-control" id="password" />
-            <button class="btn btn-primary">Login</button>
-        </div>
-    </div>
-</div>
-<script>
-  username = document.getElementById('username');
-  password = document.getElementById('password');
-  if (username.value == '' || password.value == '') {
-      alert('all fields are required');
-    }
-  else {
-    fetch("/api/login", {
-      method: "PUT",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value
-      })
-    })
-  } 
-</script>
+<form asp-action="Login" asp-controller="User" method="post">
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="submit" value="Login" />
+</form>

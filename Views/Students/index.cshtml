@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h1>Students</h1>
+
+<ul id="students">
+    @foreach (var student in Model)
+    {
+        <li>
+            <div class="@(student.degree <= 50 ? "red" : "green")">
+                <h5>@student.name</h5>
+                <p>@student.age</p>
+                <p>@student.email</p>
+                <p>@student.degree</p>
+            </div>
+        </li>
+    }
+  <style>
+    .red {
+        background-color: red;
+    }
+    .green {
+        background-color: green;
+    }
+  </style>
+<a asp-action="add">Create</a>
+</ul>

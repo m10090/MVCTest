@@ -1,0 +1,11 @@
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<form asp-action="AddStudent" asp-controller="Students" method="post">
+    <input type="text" name="name" placeholder="Name" required />
+    <input type="number" name="age" placeholder="Age" required />
+    <input type="email" name="email" placeholder="Email" required />
+    <input type="number" name="degree" placeholder="Degree" required />
+    <input type="submit" value="Add Student" />
+</form>

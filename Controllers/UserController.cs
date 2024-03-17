@@ -1,23 +1,24 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using testMvc.Models;
 using testMvc.Data;
+using Microsoft.AspNetCore.Authorization;
 
-namespace testMvc.Controllers{
+
+namespace testMvc.Controllers
+{
     public class UserController : Controller
     {
         public IActionResult Index()
         {
-            
             return View();
         }
         public IActionResult register()
         {
             return View();
         }
-        public IActionResult login()
+        public IActionResult Login()
         {
             return View();
         }
@@ -26,34 +27,38 @@ namespace testMvc.Controllers{
             return View();
         }
         // my code
-    [HttpPut]
-    [Route("User/api/register")]
-    public IResult _register([FromBody] UserRegister newUser){
-      // could add conditions and add the use to the data base
-      ApplicationDbContext db = new ApplicationDbContext();
-      if (db.Users.Where((x) => x.username == newUser.username).Any() || db.Users.Where((x) => x.email == newUser.email).Any()){
-        return Results.BadRequest();
-      }
-      if (newUser.username == null || newUser.password == null || newUser.email == null){
-        return Results.BadRequest();
-      }
-      User user = new User{
-        username = newUser.username,
-        password = newUser.password,
-        email = newUser.email
-      };
-      db.Users.Add(user);
-      db.SaveChangesAsync();
-      return Results.Ok();
-    }
-    [HttpPut("api/login")]
-    public IResult _login([FromBody] UserLogin user){
-      ApplicationDbContext db = new ApplicationDbContext();
-      if (db.Users.Where((x) => x.username == user.username && x.password == user.password).Any()){
-        return Results.Ok();
-      }
-      return Results.BadRequest();
-    }
+        [HttpPut]
+        [Route("User/api/register")]
+        public IResult _register([FromBody] UserRegister newUser)
+        {
+            // could add conditions and add the use to the data base
+            ApplicationDbContext db = new ApplicationDbContext();
+            if (db.Users.Where((x) => x.username == newUser.username)
+                .Any() || db.Users.Where((x) => x.email == newUser.email).Any())
+            {
+                return Results.BadRequest();
+            }
+            if (newUser.username == null || newUser.password == null || newUser.email == null)
+            {
+                return Results.BadRequest();
+            }
+            User user = new User
+            {
+                username = newUser.username,
+                password = newUser.password,
+                email = newUser.email
+            };
+            db.Users.Add(user);
+            db.SaveChangesAsync();
+            return Results.Ok();
+        }
+        [HttpPost]
+        public IActionResult Login([FromBody] UserLogin user)
+        {
+            var db = new ApplicationDbContext();
+
+            return Ok();
+        }
         // Monday task
         public string TestString()
         {
