@@ -6,10 +6,10 @@ namespace testMvc.Controllers
     {
         public ActionResult Index()
         {
-            TempData["result"] = Convert.ToString( TempData["result"] );
-            TempData["firstNumber"] = Convert.ToString( TempData["firstNumber"]??0.0 );
-            TempData["secondNumber"] = Convert.ToString( TempData["secondNumber"]??0.0 );
-            TempData["operation"] = ( TempData["operation"]??"" );
+            TempData["result"] = Convert.ToString(TempData["result"]);
+            TempData["firstNumber"] = Convert.ToString(TempData["firstNumber"] ?? 0.0);
+            TempData["secondNumber"] = Convert.ToString(TempData["secondNumber"] ?? 0.0);
+            TempData["operation"] = (TempData["operation"] ?? "");
             return View();
         }
 
