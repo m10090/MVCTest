@@ -52,13 +52,6 @@ namespace testMvc.Controllers
             db.SaveChangesAsync();
             return Results.Ok();
         }
-        [HttpPost]
-        public IActionResult Login([FromBody] UserLogin user)
-        {
-            var db = new ApplicationDbContext();
-
-            return Ok();
-        }
         // Monday task
         public string TestString()
         {

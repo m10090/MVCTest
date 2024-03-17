@@ -33,7 +33,6 @@ namespace test.Controllers
             return View();
         }
         [HttpPost]
-        [Authorize]
         public IActionResult AddStudent([FromForm] Student student)
         {
             Console.WriteLine("Adding student");

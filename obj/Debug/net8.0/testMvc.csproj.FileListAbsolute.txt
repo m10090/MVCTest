@@ -79,3 +79,9 @@
 /Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/runtimes/win-x64/native/e_sqlite3.dll
 /Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Microsoft.Owin.dll
+/Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Microsoft.Owin.Host.SystemWeb.dll
+/Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Microsoft.Owin.Security.dll
+/Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Microsoft.Owin.Security.Cookies.dll
+/Users/Mohamed El tamawey/testMvc/bin/Debug/net8.0/Owin.dll

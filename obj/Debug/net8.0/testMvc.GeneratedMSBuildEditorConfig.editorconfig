@@ -18,6 +18,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/Mohamed El tamawey/testMvc
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/Mohamed El tamawey/testMvc/Views/Calc/calculate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FsYy9jYWxjdWxhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/Mohamed El tamawey/testMvc/Views/Calc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FsYy9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/Mohamed El tamawey/testMvc/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,17 @@
+@{
+  ViewData["Title"] = "Index";
+}
+
+<form asp-action="calculate" method="get">
+    <label for="firstNumber">First Number</label>
+    <input type="text" class="form-control" id="firstNumber" name="firstNumber" value="@(TempData["firstNumber"])">
+    <select class="form-control" id="operation" name="operation">
+        <option value="add" selected="@(TempData["operation"] == "add")">Add</option>
+        <option value="subtract" selected="@(TempData["operation"] == "subtract")">Subtract</option>
+        <option value="multiply" selected="@(TempData["operation"] == "multiply")">Multiply</option>
+        <option value="divide" selected="@(TempData["operation"] == "multiply")">Divide</option>
+    </select>
+    <label for="secondNumber">Second Number</label>
+    <input type="text" class="form-control" id="secondNumber" name="secondNumber" value="@(TempData["secondNumber"])">
+    <input type="submit" class="btn btn-primary" value="Calculate">
+</form>
