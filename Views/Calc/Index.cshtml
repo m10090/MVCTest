@@ -1,15 +1,17 @@
 @{
-  ViewData["Title"] = "Index";
+  ViewData["Title"] = "calc";
+  // select option based on TempData
+  var opertaion = TempData["operation"] as string;
 }
 
 <form asp-action="calculate" method="get">
     <label for="firstNumber">First Number</label>
     <input type="text" class="form-control" id="firstNumber" name="firstNumber" value="@(TempData["firstNumber"])">
     <select class="form-control" id="operation" name="operation">
-        <option value="add" selected="@(TempData["operation"] == "add")">Add</option>
-        <option value="subtract" selected="@(TempData["operation"] == "subtract")">Subtract</option>
-        <option value="multiply" selected="@(TempData["operation"] == "multiply")">Multiply</option>
-        <option value="divide" selected="@(TempData["operation"] == "multiply")">Divide</option>
+        <option value="add" selected=@(opertaion == "add")>Add</option>
+        <option value="subtract" selected=@(opertaion == "subtract")>Subtract</option>
+        <option value="multiply" selected="@(opertaion == "multiply")">Multiply</option>
+        <option value="divide" selected="@(opertaion == "divide")">Divide</option>
     </select>
     <label for="secondNumber">Second Number</label>
     <input type="text" class="form-control" id="secondNumber" name="secondNumber" value="@(TempData["secondNumber"])">
