@@ -25,7 +25,11 @@
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
-                window.location.href = '/home';
+                // get redirect url from the query string or default to '/'
+                const redirect = window.location.search
+                    ? new URLSearchParams(window.location.search).get('ReturnUrl')
+                    : '/home';
+                window.location.href = redirect;
             })
             .catch((error) => {
                 console.error('Error:', error);

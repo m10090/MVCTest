@@ -35,7 +35,12 @@ namespace testMvc.Controllers.Api
               };
               var Identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
               var principal = new ClaimsPrincipal(Identity);
-              await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+              var authProperties = new AuthenticationProperties
+              {
+                  IsPersistent = true,
+                  ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
+              };
+              await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal,authProperties);
               return Ok(new { message = "Login Success" });
             }
             return response;

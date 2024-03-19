@@ -19,12 +19,12 @@ namespace test.Controllers
 
         }
         // web page to add students 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add()
         {
             return View();
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult AddStudent([FromForm] Student student)
         {

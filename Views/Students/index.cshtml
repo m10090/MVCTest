@@ -24,6 +24,23 @@
     .green {
         background-color: green;
     }
+    .red, .green {
+        color: white;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .red p, .green p {
+        margin: 0;
+        width: 20%;
+    }
+    .red h5, .green h5 {
+        margin: 0;
+        width: 30%;
+    }
   </style>
 <a asp-action="add">Create</a>
 </ul>
