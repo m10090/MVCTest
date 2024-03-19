@@ -83,6 +83,9 @@ namespace testMvc.Controllers
         {
             return new RedirectToActionResult("Index", "Home", null);
         }
+        public IActionResult testContent(){
+          return Content("hi test") ;
+        }
 
     }
 }
