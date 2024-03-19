@@ -15,23 +15,16 @@ namespace test.Controllers
         {
             var db = new ApplicationDbContext();
             List<Student> students = db.Students.ToList();
-            bool isDevelopment = string.Compare(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"), "Development", StringComparison.OrdinalIgnoreCase) == 0;
-            if (isDevelopment)
-                students = new List<Student> {
-              new Student { name = "John", email = "hi@mail.com",age = 12, degree= 40} ,
-            new Student { name = "Jane", email = "jane@cow.com",age = 12, degree= 40},
-            new Student { name = "omar", email = "omar@lgt.com",age = 15, degree= 90},
-            new Student { name = "mohamed", email = "i2l@rt.com",age = 12, degree= 40}
-
-          };
             return View(students);
 
         }
         // web page to add students 
+        [Authorize]
         public IActionResult Add()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         public IActionResult AddStudent([FromForm] Student student)
         {
@@ -41,6 +34,7 @@ namespace test.Controllers
             db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
     }
 
 }

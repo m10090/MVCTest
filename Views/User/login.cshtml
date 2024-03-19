@@ -2,8 +2,33 @@
     ViewData["Title"] = "Login Page";
 }
 
-<form asp-action="Login" asp-controller="api" method="post">
-    <input type="text" name="username" placeholder="Username" required />
-    <input type="password" name="password" placeholder="Password" required />
-    <input type="submit" value="Login" />
-</form>
+<div>
+    <input type="text" name="Username" placeholder="Username" required />
+    <input type="password" name="Password" placeholder="Password" required />
+    <button id="LoginBtn">Login</button>
+</div>
+<script>
+    // This is a simple example of how to use the Fetch API with a POST request
+    document.getElementById('LoginBtn').addEventListener('click', function (e) {
+      const Username = document.querySelector('input[name="Username"]');
+      const Password = document.querySelector('input[name="Password"]');
+        fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                Username: Username.value,
+                Password: Password.value
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                window.location.href = '/home';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    });
+</script>

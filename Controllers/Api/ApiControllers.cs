@@ -1,12 +1,10 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using testMvc.Data;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using testMvc.Models;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
+using System.Collections.Generic;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using testMvc.Models;
 namespace testMvc.Controllers.Api
 {
     [Route("/api")]
@@ -21,29 +19,27 @@ namespace testMvc.Controllers.Api
         }
         [HttpPost]
         [Route("/api/login")]
-        public IActionResult Login([FromBody] LoginModel login)
+        public async Task<IActionResult> Login([FromBody] LoginModel login)
         {
             IActionResult response = Unauthorized();
             var db = new ApplicationDbContext();
             var user = db.Users.FirstOrDefault(x => x.username == login.Username && x.password == login.Password);
+            Console.WriteLine(login.Username);
+            Console.WriteLine(login.Password);
             if (user != null)
             {
-                var tokenString = GenerateJSONWebToken(user.Id.ToString());
-                Response.Cookies.Append("auth_token", tokenString, new CookieOptions() { HttpOnly = true });
-                response = RedirectToAction("Index", "Students");
+              var claims = new List<Claim>
+              {
+                  new Claim(ClaimTypes.Name, user.username),
+                  new Claim(ClaimTypes.Role, "Admin")
+              };
+              var Identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+              var principal = new ClaimsPrincipal(Identity);
+              await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+              return Ok(new { message = "Login Success" });
             }
             return response;
         }
-        private string GenerateJSONWebToken(string username)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Issuer"],
-              null,
-              expires: DateTime.Now.AddMinutes(120),
-              signingCredentials: credentials);
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
-    }
+
+  }
 }

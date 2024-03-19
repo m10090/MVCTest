@@ -1,5 +1,6 @@
 using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using testMvc.Models;
 using testMvc.Data;
@@ -22,9 +23,10 @@ namespace testMvc.Controllers
         {
             return View();
         }
-        public IActionResult logout()
+        public async Task<IActionResult> logout()
         {
-            return View();
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
         // my code
         [HttpPut]

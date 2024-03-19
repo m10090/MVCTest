@@ -30,8 +30,9 @@ db.Database.EnsureCreated();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
+        options.Cookie.Name = "AuthCookie";
+        options.Cookie.HttpOnly = true;
         options.LoginPath = "/user/Login";
-        options.AccessDeniedPath = "/user/AccessDenied";
     });
 var app = builder.Build();
 
